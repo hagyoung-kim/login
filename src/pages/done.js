@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import Footer from '../components/footer';
 import Colors from '../common/colors';
+import { useNavigation } from '@react-navigation/native';
 
 const Done = () => {
 	const [ btn, setBtn ] = useState(false);
 
 	const clickBtn = () => {
 		setBtn((prev) => !prev);
+	};
+
+	const navigation = useNavigation();
+
+	const moveLogin = () => {
+		// if (!essentialCheck()) return;
+		navigation.navigate('login');
+		// essentialCheck() ? navigation.navigate('register') : {};
 	};
 
 	return (
@@ -29,7 +38,7 @@ const Done = () => {
 				<Text style={{ fontSize: 21, color: Colors.darkGrey, marginTop: 30 }}>회원가입이 완료되었습니다.</Text>
 				<Text style={{ fontSize: 14, color: Colors.warmGrey, marginTop: 14.5 }}>로그인하고 바로 리그에 참여해 보세요.</Text>
 			</View>
-			<Footer clickBtn={clickBtn}>
+			<Footer onPress={moveLogin} clickBtn={clickBtn}>
 				<Text style={{ color: Colors.white }}>로그인</Text>
 			</Footer>
 		</ScrollView>

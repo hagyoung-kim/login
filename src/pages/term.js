@@ -1,34 +1,61 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Colors from '../common/colors';
 import Title from '../components/title';
 import CheckBox from '../components/checkbox';
+import CheckBox2 from '../components/checkbox2';
 import Footer from '../components/footer';
+import { useNavigation } from '@react-navigation/native';
 
 const Term = () => {
-	const [ check, setCheck ] = useState(false);
-	const [ btn, setBtn ] = useState(false);
-	// const [ checkBtn, setCheckBtn ] = useState(false);
+	// const [ btn, setBtn ] = useState(false);
 
 	const clickCheck = () => {
 		setCheck((prev) => !prev);
 	};
-
-	const clickBtn = () => {
-		setBtn((prev) => !prev);
-	};
-
-	// const clickCheckBtn = () => {
-	// 	setCheckBtn((prev) => !prev);
+	// const clickBtn = () => {
+	// 	setBtn((prev) => !prev);
 	// };
 
-	const TermList = [
-		'서비스 이용약관 (필수)',
-		'개인정보 처리방침 (필수)',
-		'개인정보 수집 및 이용 (필수)',
-		'개인정보 제3자 제공 동의 (선택)',
-		'마케팅 활용 동의 (선택)'
-	];
+	const [ termList, setTermList ] = useState([
+		{
+			id: 1,
+			title: '서비스 이용약관 (필수)',
+			active: false
+		},
+		{
+			id: 2,
+			title: '개인정보 처리방침 (필수)',
+			active: false
+		},
+		{
+			id: 3,
+			title: '개인정보 수집 및 이용 (필수)',
+			active: false
+		},
+		{
+			id: 4,
+			title: '개인정보 제3자 제공 동의 (선택)',
+			active: false
+		},
+		{
+			id: 5,
+			title: '마케팅 활용 동의 (선택)',
+			active: false
+		}
+	]);
+
+	const essentialCheck = () => {
+		return termList[0].active && termList[1].active && termList[2].active;
+	};
+	console.log('essentialCheck', essentialCheck());
+
+	const navigation = useNavigation();
+	const moveRegister = () => {
+		if (!essentialCheck()) return;
+		navigation.navigate('register');
+		// essentialCheck() ? navigation.navigate('register') : {};
+	};
 
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
@@ -38,35 +65,41 @@ const Term = () => {
 
 			<View style={{ marginHorizontal: 28 }}>
 				<View style={{ flex: 2 }}>
-					<CheckBox clickCheck={clickCheck} style={styles.termStyle}>
-						<Text>약관에 모두 동의합니다.</Text>
+					<CheckBox
+						value={false}
+						clickCheck={clickCheck}
+						termList={termList}
+						setTermList={setTermList}
+						style={styles.termStyle}
+					>
+						<Text>약관에 모두 동의합니다. </Text>
 					</CheckBox>
 
-					{TermList.map((data) => {
+					{termList.map((data) => {
 						return (
-							<CheckBox style={{ marginLeft: 10 }} clickCheck={clickCheck}>
-								<View style={{ flexDirection: 'row' }}>
-									<Text> {data} </Text>
-								</View>
-								<TouchableOpacity style={{ justifyContent: 'center' }}>
-									<Text
-										style={{
-											fontSize: 12,
-											textDecorationLine: 'underline',
-											fontWeight: 'bold',
-											textAlign: 'center'
-										}}
-									>
-										약관보기
-									</Text>
-								</TouchableOpacity>
-							</CheckBox>
+							<View key={data.id}>
+								<CheckBox2
+									style={{ marginLeft: 10 }}
+									termList={termList}
+									setTermList={setTermList}
+									active={data.active}
+									id={data.id}
+									key={data.id}
+								>
+									<View style={{ flexDirection: 'row', marginVertical: 13 }} key={data.id}>
+										<Text style={{ fontSize: 12, color: Colors.brownishGrey }} key={data.id}>
+											{data.title}
+										</Text>
+									</View>
+								</CheckBox2>
+							</View>
 						);
 					})}
 				</View>
 			</View>
 
-			<Footer clickBtn={clickBtn}>
+			{/* clickBtn={clickBtn} */}
+			<Footer onPress={moveRegister} isCheck={essentialCheck()}>
 				<Text style={{ color: Colors.white }}>다음으로</Text>
 			</Footer>
 		</ScrollView>

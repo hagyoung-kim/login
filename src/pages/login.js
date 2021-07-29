@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
 import axios from 'axios';
 import Colors from '../common/colors';
 import CheckBox from '../components/checkbox';
 import MainBtn from '../components/mainBtn';
-import Inputbox from '../components/inputbox';
-// import Link from 'next/link';
+import LoginInput from '../components/loginInput';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
-	const [ posts, setPosts ] = React.useState([]);
+	// const [ posts, setPosts ] = React.useState([]);
 
 	const [ check, setCheck ] = useState(true);
 	const [ btn, setBtn ] = useState(false);
@@ -40,9 +40,9 @@ const Login = () => {
 	const clickBtn = () => {
 		setBtn((prev) => !prev);
 	};
-	const inputText = () => {
-		setInput((prev) => !prev);
-	};
+	// const inputText = () => {
+	// 	setInput((prev) => !prev);
+	// };
 
 	const loginInputList = [
 		{
@@ -54,6 +54,14 @@ const Login = () => {
 			placeholder: '비밀번호를 입력해주세요'
 		}
 	];
+
+	const navigation = useNavigation();
+
+	//callback은 의무 아님
+	const moveTerm = useCallback(() => {
+		// console.log(1);
+		navigation.navigate('term');
+	}, []);
 
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
@@ -67,7 +75,9 @@ const Login = () => {
 							index === 0
 								? styles.textInputBorderID
 								: index === loginInputList.length - 1 ? styles.textInputBorderPW : {};
-						return <Inputbox style={style} title={data.title} placeholder={data.placeholder} />;
+						return (
+							<LoginInput style={style} title={data.title} placeholder={data.placeholder} key={index} />
+						);
 					})}
 
 					<CheckBox clickCheck={clickCheck} style={styles.termStyle}>
@@ -79,7 +89,7 @@ const Login = () => {
 					</MainBtn>
 
 					<View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
-						<TouchableOpacity style={{ marginHorizontal: 15 }}>
+						<TouchableOpacity onPress={moveTerm} style={{ marginHorizontal: 15 }}>
 							{/* <Link href="/register"> */}
 							<Text>회원가입</Text>
 							{/* </Link> */}

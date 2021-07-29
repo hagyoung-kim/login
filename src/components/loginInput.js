@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View, TextInput, Image } from 'react-native';
 import Colors from '../common/colors';
 
-const Inputbox = ({
+const LoginInput = ({
 	children,
 	title,
 	placeholder,
@@ -16,15 +16,7 @@ const Inputbox = ({
 	dataCheck
 }) => {
 	const [ isFocused, setIsFocused ] = useState(false);
-	console.log(
-		'isValidated' + title,
-		isValidated,
-		typeof isValidated === 'boolean' &&
-			!isValidated &&
-			!dataCheck &&
-			inputTitle === '비밀번호 확인' &&
-			form[propertyKey] !== ''
-	);
+
 	const _renderErrorMessage = () => (
 		<Text
 			style={{
@@ -85,22 +77,11 @@ const Inputbox = ({
 					}}
 					// value={form[propertyKey]}
 				/>
-				{isValidated && (
-					<Image
-						style={{ position: 'absolute', top: 30, right: 20 }}
-						source={require('../img/greenCheck.png')}
-					/>
-				)}
-
-				{!isValidated && (
-					<Image
-						style={{ position: 'absolute', top: 30, right: 20 }}
-						source={require('../img/pinkCheck.png')}
-					/>
-				)}
 
 				{typeof isValidated === 'boolean' &&
 					!isValidated &&
+					dataCheck === 'boolean' &&
+					!dataCheck &&
 					inputTitle === '비밀번호 확인' &&
 					form[propertyKey] !== '' &&
 					_renderErrorMessage()}
@@ -111,4 +92,4 @@ const Inputbox = ({
 	);
 };
 
-export default Inputbox;
+export default LoginInput;

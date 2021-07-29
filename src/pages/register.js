@@ -4,6 +4,7 @@ import Colors from '../common/colors';
 import Title from '../components/title';
 import Footer from '../components/footer';
 import Inputbox from '../components/inputbox';
+import { useNavigation } from '@react-navigation/native';
 // import pinkCheck from '../img/pinkCheck';
 
 /**
@@ -157,6 +158,13 @@ const Register = () => {
 		}
 	};
 
+	const navigation = useNavigation();
+
+	const moveDone = () => {
+		// if (!essentialCheck()) return;
+		navigation.navigate('registerDone');
+	};
+
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
 			<Title style={styles.title}>
@@ -192,7 +200,7 @@ const Register = () => {
 				})}
 			</View>
 
-			<Footer clickBtn={clickBtn}>
+			<Footer onPress={moveDone} clickBtn={clickBtn}>
 				<Text style={{ color: Colors.white }}>회원가입 완료</Text>
 			</Footer>
 		</ScrollView>

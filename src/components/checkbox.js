@@ -1,22 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import Colors from '../common/colors';
 
-const CheckBox = ({ clickCheck, children, value, style }) => {
-	const [ check, setCheck ] = useState(value);
+const CheckBox = ({ children, style, termList, setTermList }) => {
+	const [ allCheck, setAllCheck ] = useState(false);
+	// const [ btn, setBtn ] = useState(false);
+
+	// useEffect(
+	// 	() => {
+	// 		console.log(termList);
+	// 	},
+	// 	[ termList ]
+	// );
 
 	return (
 		<TouchableOpacity
 			style={[ { position: 'relative', marginTop: 22, flexDirection: 'row' }, style ]}
 			onPress={() => {
-				setCheck((prev) => !prev);
-				clickCheck();
+				if (allCheck) {
+					// 눌렀을 때 termList의 모든 요소의 active를 true로
+					setTermList((prev) => {
+						const next = prev.map((term) => ({
+							...term,
+							active: false
+						}));
+						return next;
+					});
+				} else {
+					// 모든 요소의 active를 false로
+					setTermList((prev) => {
+						const next = prev.map((term) => ({
+							...term,
+							active: true
+						}));
+						return next;
+					});
+				}
+
+				// console.log(termList);
+
+				setAllCheck(!allCheck);
 			}}
 		>
 			<View
 				style={{
 					marginRight: 10,
-					backgroundColor: check ? Colors.warmPink : Colors.veryLightPink,
+					backgroundColor: allCheck ? Colors.warmPink : Colors.veryLightPink,
 					width: 20,
 					height: 20,
 					borderRadius: 10,
