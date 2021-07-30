@@ -38,9 +38,19 @@ const Done = () => {
 				<Text style={{ fontSize: 21, color: Colors.darkGrey, marginTop: 30 }}>회원가입이 완료되었습니다.</Text>
 				<Text style={{ fontSize: 14, color: Colors.warmGrey, marginTop: 14.5 }}>로그인하고 바로 리그에 참여해 보세요.</Text>
 			</View>
-			<Footer onPress={moveLogin} clickBtn={clickBtn}>
-				<Text style={{ color: Colors.white }}>로그인</Text>
-			</Footer>
+
+			<TouchableOpacity
+				style={{
+					backgroundColor: Colors.warmPink,
+					height: 80,
+					alignItems: 'center',
+					paddingTop: 22,
+					marginTop: 200
+				}}
+				onPress={moveLogin}
+			>
+				<Text style={{ color: Colors.white, fontSize: 20 }}> 로그인</Text>
+			</TouchableOpacity>
 		</ScrollView>
 	);
 };

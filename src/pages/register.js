@@ -5,44 +5,9 @@ import Title from '../components/title';
 import Footer from '../components/footer';
 import Inputbox from '../components/inputbox';
 import { useNavigation } from '@react-navigation/native';
-// import pinkCheck from '../img/pinkCheck';
+import Account from '../apis/Account';
 
-/**
- * 별명이 등록가능한지의 여부를 가져옴
- * @param {string} nickname 별명
- * @return {boolean}
- */
-const getIsNicknameOkay = (nickname) => {
-	return nickname.length <= 10;
-};
-
-// const getIsNicknameCheckOkay = (nicknameCheck) => {
-// 	return nickname.length <= 10;
-// };
-
-const getIsUserIdOkay = (userId) => {
-	return /^(?=[A-Z0-9]*[a-z])(?=[a-zA-Z]*[0-9])[a-zA-Z0-9]{4,10}$/.test(userId);
-};
-const getIsPhoneOkay = (phone) => {
-	return /^[0-9]+$/.test(phone);
-};
-const getIsPasswordOkay = (password) => {
-	return /^(?=[A-Z0-9]*[a-z])(?=[a-zA-Z]*[0-9])[a-zA-Z0-9]{4,10}$/.test(password);
-};
-const getIsPasswordCheckOkay = (passwordCheck) => {
-	return /^(?=[A-Z0-9]*[a-z])(?=[a-zA-Z]*[0-9])[a-zA-Z0-9]{4,10}$/.test(passwordCheck);
-};
-
-// const getIsDataCheckOkay = (dataCheck) => {
-// 	return
-// };
-
-const Register = () => {
-	// const [ userId, setUserId ] = useState('');
-	// const [ userPw, setUserPW ] = useState('');
-	// const [ pwCheck, setPwCheck ] = useState('');
-	// const [ nickname, setNickname ] = useState('');
-	// const [phone, setPhone] = useState('');
+const Register = ({ route }) => {
 	const [ form, setForm ] = useState({
 		nickname: '',
 		nicknameCheck: '',
@@ -50,17 +15,55 @@ const Register = () => {
 		password: '',
 		passwordCheck: '',
 		phone: ''
-		// dataCheck: false
 	});
-	const [ dataCheck, setDataCheck ] = useState(false);
+	console.log(route.parms);
+
+	const goRegister = async () => {
+		try {
+			const params = {
+				type: 'USER',
+				active: true,
+				userId: form.userId,
+				password: form.password,
+				nickname: form.nickname,
+				phone: form.phone
+			};
+			const result = Account.register(params).then((response) => {
+				// console.log(params);
+				console.log(response);
+				navigation.navigate('registerDone');
+			});
+		} catch (e) {
+			throw e;
+		}
+	};
+
+	/**
+ * 별명이 등록가능한지의 여부를 가져옴
+ * @param {string} nickname 별명
+ * @return {boolean}
+ */
+	const getIsNicknameOkay = (nickname) => {
+		return nickname.length <= 10;
+	};
+	const getIsUserIdOkay = (userId) => {
+		return /^(?=[A-Z0-9]*[a-z])(?=[a-zA-Z]*[0-9])[a-zA-Z0-9]{4,10}$/.test(userId);
+	};
+	const getIsPhoneOkay = (phone) => {
+		return /^[0-9]+$/.test(phone);
+	};
+	const getIsPasswordOkay = (password) => {
+		return /^(?=[A-Z0-9]*[a-z])(?=[a-zA-Z]*[0-9])[a-zA-Z0-9]{4,10}$/.test(password);
+	};
+	const getIsPasswordCheckOkay = () => {
+		return form.password === form.passwordCheck;
+	};
 
 	const isNicknameOkay = getIsNicknameOkay(form.nickname);
-	// const isNicknameCheckOkay = getIsNicknameCheckOkay(form.nicknameCheck);
 	const isUserIdOkay = getIsUserIdOkay(form.userId);
 	const isPhoneOkay = getIsPhoneOkay(form.phone);
 	const isPasswordOkay = getIsPasswordOkay(form.password);
 	const isPasswordCheckOkay = getIsPasswordCheckOkay(form.passwordCheck);
-	// const isDataCheckOkay = getIsDataCheckOkay(dataCheck);
 
 	const joinInputList = [
 		{
@@ -71,9 +74,6 @@ const Register = () => {
 			errorMessage: `별명이 최대 10자 이내여야 합니다`,
 			form,
 			setForm
-
-			// dataCheck: isDataCheckOkay,
-			// setDataCheck
 		},
 		{
 			title: '아이디',
@@ -113,9 +113,13 @@ const Register = () => {
 		}
 	];
 
-	// const [ btn, setBtn ] = useState(false);
-	const clickBtn = () => {
-		// setBtn((prev) => !prev);
+	const joinDataCheckDone = () => {
+		return isNicknameOkay && isUserIdOkay && isPasswordOkay && isPasswordCheckOkay && isPhoneOkay;
+	};
+
+	const navigation = useNavigation();
+
+	const moveDone = () => {
 		if (form.nickname === '') {
 			alert('별명을 입력하세요!!');
 			return;
@@ -156,13 +160,7 @@ const Register = () => {
 			alert(joinInputList[4].errorMessage);
 			return;
 		}
-	};
-
-	const navigation = useNavigation();
-
-	const moveDone = () => {
-		// if (!essentialCheck()) return;
-		navigation.navigate('registerDone');
+		goRegister();
 	};
 
 	return (
@@ -194,13 +192,14 @@ const Register = () => {
 							inputTitle={inputData.title}
 							style={style}
 							{...inputData}
+							// inputData={inputData}
 							key={`Inputbox_${inputData.propertyKey}`}
 						/>
 					);
 				})}
 			</View>
 
-			<Footer onPress={moveDone} clickBtn={clickBtn}>
+			<Footer onPress={moveDone} goRegister={goRegister} isCheck={joinDataCheckDone()}>
 				<Text style={{ color: Colors.white }}>회원가입 완료</Text>
 			</Footer>
 		</ScrollView>

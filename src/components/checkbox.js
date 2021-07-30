@@ -36,10 +36,8 @@ const CheckBox = ({ children, style, termList, setTermList }) => {
 						return next;
 					});
 				}
-
-				// console.log(termList);
-
 				setAllCheck(!allCheck);
+				// console.log(termList);
 			}}
 		>
 			<View

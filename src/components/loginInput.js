@@ -1,34 +1,22 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, Image } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 import Colors from '../common/colors';
 
-const LoginInput = ({
-	children,
-	title,
-	placeholder,
-	style,
-	form,
-	setForm,
-	propertyKey,
-	isValidated,
-	errorMessage,
-	inputTitle,
-	dataCheck
-}) => {
+const LoginInput = ({ children, title, placeholder, style, form, setForm, propertyKey }) => {
 	const [ isFocused, setIsFocused ] = useState(false);
 
-	const _renderErrorMessage = () => (
-		<Text
-			style={{
-				paddingLeft: 15,
-				paddingBottom: 10,
-				color: Colors.grapefruit,
-				fontSize: 10
-			}}
-		>
-			{errorMessage}
-		</Text>
-	);
+	// const _renderErrorMessage = () => (
+	// 	<Text
+	// 		style={{
+	// 			paddingLeft: 15,
+	// 			paddingBottom: 10,
+	// 			color: Colors.grapefruit,
+	// 			fontSize: 10
+	// 		}}
+	// 	>
+	// 		{errorMessage}
+	// 	</Text>
+	// );
 
 	return (
 		<View style={{ borderTopLeftRadius: 10 }}>
@@ -66,6 +54,15 @@ const LoginInput = ({
 					onBlur={() => {
 						setIsFocused(false);
 					}}
+					// onChangeText={(text) => {
+					// 	setForm((prev) => {
+					// 		const next = {
+					// 			...prev,
+					// 			[propertyKey]: text
+					// 		};
+					// 		return next;
+					// 	});
+					// }}
 					onChangeText={(text) => {
 						setForm((prev) => {
 							const next = {
@@ -78,13 +75,11 @@ const LoginInput = ({
 					// value={form[propertyKey]}
 				/>
 
-				{typeof isValidated === 'boolean' &&
+				{/* {typeof isValidated === 'boolean' &&
 					!isValidated &&
-					dataCheck === 'boolean' &&
-					!dataCheck &&
 					inputTitle === '비밀번호 확인' &&
 					form[propertyKey] !== '' &&
-					_renderErrorMessage()}
+					_renderErrorMessage()} */}
 			</View>
 
 			{children}

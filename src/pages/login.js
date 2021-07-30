@@ -6,62 +6,67 @@ import CheckBox from '../components/checkbox';
 import MainBtn from '../components/mainBtn';
 import LoginInput from '../components/loginInput';
 import { useNavigation } from '@react-navigation/native';
+import Account from '../apis/Account';
 
 const Login = () => {
-	// const [ posts, setPosts ] = React.useState([]);
+	// const [ check, setCheck ] = useState(true);
+	// const [ btn, setBtn ] = useState(false);
+	const [ form, setForm ] = useState({
+		userId: '',
+		password: ''
+	});
 
-	const [ check, setCheck ] = useState(true);
-	const [ btn, setBtn ] = useState(false);
-	const [ input, setInput ] = useState(false);
-
-	// React.useEffect(() => {
-	// 	movePage();
-	// }, []);
-
-	// const movePage = async () => {
-	// 	const res = await axios({
-	// 		url: 'https://9001.in.actbase.io',
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': FormData
-	// 		},
-	// 		formData: {
-	// 			username: '',
-	// 			password: '',
-	// 			grant_type: 'password'
-	// 		}
-	// 	});
-	// 	setPosts(res.data);
-	// };
-
-	const clickCheck = () => {
-		setCheck((prev) => !prev);
-	};
-	const clickBtn = () => {
-		setBtn((prev) => !prev);
-	};
-	// const inputText = () => {
-	// 	setInput((prev) => !prev);
-	// };
-
-	const loginInputList = [
-		{
-			title: '아이다',
-			placeholder: '아이디를 입력해주세요'
-		},
-		{
-			title: '비밀번호',
-			placeholder: '비밀번호를 입력해주세요'
+	const goLogin = async () => {
+		try {
+			const params = new FormData();
+			console.log(form);
+			params.append('username', form.userId);
+			params.append('password', form.password);
+			params.append('grant_type', 'password');
+			// console.log(params);
+			const result = Account.login(params).then((response) => {
+				// console.log(response);
+				moveMain();
+			});
+			// console.log(result);
+		} catch (e) {
+			throw e;
 		}
-	];
+	};
+
+	// const clickCheck = () => {
+	// 	setCheck((prev) => !prev);
+	// };
+	// const clickBtn = () => {
+	// 	setBtn((prev) => !prev);
+	// };
+
+	const [ termList, setTermList ] = useState([
+		{
+			id: 1,
+			active: false
+		}
+	]);
+
+	const loginInputText = () => {
+		// return setForm(text);
+		//버튼 컬러
+	};
 
 	const navigation = useNavigation();
 
 	//callback은 의무 아님
 	const moveTerm = useCallback(() => {
-		// console.log(1);
 		navigation.navigate('term');
 	}, []);
+	const moveMain = useCallback(() => {
+		navigation.navigate('home');
+	}, []);
+
+	// const essentialCheck = () => {
+	// 	return termList.active;
+	// };
+	// console.log('essentialCheck', essentialCheck());
 
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
@@ -70,29 +75,30 @@ const Login = () => {
 					<Image style={(styles.logo, { marginVertical: 50 })} source={require('../img/logo.png')} />
 				</View>
 				<View style={(styles.loginBox, { flex: 2 })}>
-					{loginInputList.map((data, index) => {
-						const style =
-							index === 0
-								? styles.textInputBorderID
-								: index === loginInputList.length - 1 ? styles.textInputBorderPW : {};
-						return (
-							<LoginInput style={style} title={data.title} placeholder={data.placeholder} key={index} />
-						);
-					})}
-
-					<CheckBox clickCheck={clickCheck} style={styles.termStyle}>
-						<Text>로그인 유지</Text>
+					<LoginInput setForm={setForm} title="로그인" placeholder="아이디를 입력해주세요" propertyKey="userId" />
+					<LoginInput setForm={setForm} title="비밀번호" placeholder="비밀번호를 입력해주세요" propertyKey="password" />
+					<CheckBox
+						value={false}
+						// clickCheck={clickCheck}
+						termList={termList}
+						setTermList={setTermList}
+						style={styles.termStyle}
+					>
+						<Text>로그인 유지 </Text>
 					</CheckBox>
-
-					<MainBtn clickBtn={clickBtn}>
+					{/* clickBtn={clickBtn} */}
+					<MainBtn
+						onPress={moveMain}
+						goLogin={goLogin}
+						// isCheck={essentialCheck()}
+						isText={loginInputText}
+						form={form}
+					>
 						<Text>로그인</Text>
 					</MainBtn>
-
 					<View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
 						<TouchableOpacity onPress={moveTerm} style={{ marginHorizontal: 15 }}>
-							{/* <Link href="/register"> */}
 							<Text>회원가입</Text>
-							{/* </Link> */}
 						</TouchableOpacity>
 						<TouchableOpacity style={{ marginHorizontal: 15 }}>
 							<Text>아이디찾기</Text>

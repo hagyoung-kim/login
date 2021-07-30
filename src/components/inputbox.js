@@ -13,18 +13,19 @@ const Inputbox = ({
 	isValidated,
 	errorMessage,
 	inputTitle,
-	dataCheck
+	inputData
 }) => {
 	const [ isFocused, setIsFocused ] = useState(false);
-	console.log(
-		'isValidated' + title,
-		isValidated,
-		typeof isValidated === 'boolean' &&
-			!isValidated &&
-			!dataCheck &&
-			inputTitle === '비밀번호 확인' &&
-			form[propertyKey] !== ''
-	);
+
+	// console.log(
+	// 	'isValidated' + title,
+	// 	isValidated,
+	// 	typeof isValidated === 'boolean' &&
+	// 		!isValidated &&
+	// 		!dataCheck &&
+	// 		inputTitle === '비밀번호 확인' &&
+	// 		form[propertyKey] !== ''
+	// );
 	const _renderErrorMessage = () => (
 		<Text
 			style={{
@@ -37,6 +38,8 @@ const Inputbox = ({
 			{errorMessage}
 		</Text>
 	);
+
+	console.log(title, form[propertyKey]);
 
 	return (
 		<View style={{ borderTopLeftRadius: 10 }}>
@@ -85,20 +88,15 @@ const Inputbox = ({
 					}}
 					// value={form[propertyKey]}
 				/>
-				{isValidated && (
+				{(inputTitle === '비밀번호' || inputTitle === '비밀번호 확인') &&
+				form[propertyKey] !== '' &&
+				form[propertyKey] !== null &&
+				form[propertyKey] !== undefined && (
 					<Image
 						style={{ position: 'absolute', top: 30, right: 20 }}
-						source={require('../img/greenCheck.png')}
+						source={isValidated ? require('../img/greenCheck.png') : require('../img/pinkCheck.png')}
 					/>
 				)}
-
-				{!isValidated && (
-					<Image
-						style={{ position: 'absolute', top: 30, right: 20 }}
-						source={require('../img/pinkCheck.png')}
-					/>
-				)}
-
 				{typeof isValidated === 'boolean' &&
 					!isValidated &&
 					inputTitle === '비밀번호 확인' &&

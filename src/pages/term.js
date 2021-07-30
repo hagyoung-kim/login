@@ -10,9 +10,9 @@ import { useNavigation } from '@react-navigation/native';
 const Term = () => {
 	// const [ btn, setBtn ] = useState(false);
 
-	const clickCheck = () => {
-		setCheck((prev) => !prev);
-	};
+	// const clickCheck = () => {
+	// 	setCheck((prev) => !prev);
+	// };
 	// const clickBtn = () => {
 	// 	setBtn((prev) => !prev);
 	// };
@@ -51,9 +51,11 @@ const Term = () => {
 	console.log('essentialCheck', essentialCheck());
 
 	const navigation = useNavigation();
+
 	const moveRegister = () => {
 		if (!essentialCheck()) return;
-		navigation.navigate('register');
+		navigation.navigate('register', termList);
+
 		// essentialCheck() ? navigation.navigate('register') : {};
 	};
 
@@ -67,7 +69,7 @@ const Term = () => {
 				<View style={{ flex: 2 }}>
 					<CheckBox
 						value={false}
-						clickCheck={clickCheck}
+						// clickCheck={clickCheck}
 						termList={termList}
 						setTermList={setTermList}
 						style={styles.termStyle}
