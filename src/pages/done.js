@@ -26,7 +26,7 @@ const Done = () => {
 					style={{
 						width: 165,
 						height: 165,
-						backgroundColor: Colors.veryLightPinkThree,
+						backgroundColor: Colors.veryLightPink,
 						borderRadius: 100
 					}}
 				>
@@ -45,7 +45,7 @@ const Done = () => {
 					height: 80,
 					alignItems: 'center',
 					paddingTop: 22,
-					marginTop: 200
+					marginTop: 155
 				}}
 				onPress={moveLogin}
 			>

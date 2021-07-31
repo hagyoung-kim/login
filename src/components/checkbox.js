@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image, Text } from 'react-native';
 import Colors from '../common/colors';
 
-const CheckBox = ({ children, style, termList, setTermList }) => {
+const CheckBox = ({ children, style, setTermList }) => {
 	const [ allCheck, setAllCheck ] = useState(false);
-	// const [ btn, setBtn ] = useState(false);
-
 	// useEffect(
 	// 	() => {
 	// 		console.log(termList);
@@ -18,7 +16,7 @@ const CheckBox = ({ children, style, termList, setTermList }) => {
 			style={[ { position: 'relative', marginTop: 22, flexDirection: 'row' }, style ]}
 			onPress={() => {
 				if (allCheck) {
-					// 눌렀을 때 termList의 모든 요소의 active를 true로
+					// 눌렀을 때 termList의 모든 요소의 active를 false로
 					setTermList((prev) => {
 						const next = prev.map((term) => ({
 							...term,
@@ -27,7 +25,7 @@ const CheckBox = ({ children, style, termList, setTermList }) => {
 						return next;
 					});
 				} else {
-					// 모든 요소의 active를 false로
+					// 모든 요소의 active를 true로
 					setTermList((prev) => {
 						const next = prev.map((term) => ({
 							...term,
@@ -64,7 +62,6 @@ const CheckBox = ({ children, style, termList, setTermList }) => {
 					color: Colors.brownGrey
 				}}
 			/>
-
 			{children}
 		</TouchableOpacity>
 	);

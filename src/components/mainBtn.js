@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 import Colors from '../common/colors';
 
-const MainBtn = ({ clickBtn, value, children, isText, goLogin, form }) => {
-	const [ btn, setBtn ] = useState(value);
-
+const MainBtn = ({ goLogin }) => {
 	return (
 		<TouchableOpacity
 			style={{
 				height: 50,
-				backgroundColor: isText ? Colors.warmPink : Colors.veryLightPink,
+				backgroundColor: Colors.warmPink,
 				alignItems: 'center',
 				justifyContent: 'center',
 				marginTop: 30,
@@ -17,12 +15,10 @@ const MainBtn = ({ clickBtn, value, children, isText, goLogin, form }) => {
 			}}
 			onPress={() => {
 				// setBtn((prev) => !prev);
-				// clickBtn();
-
 				goLogin();
 			}}
 		>
-			<Text style={{ fontSize: 16, letterSpacing: -0.9, color: Colors.white }}>{children}</Text>
+			<Text style={{ fontSize: 16, letterSpacing: -0.9, color: Colors.white }}>로그인</Text>
 		</TouchableOpacity>
 	);
 };

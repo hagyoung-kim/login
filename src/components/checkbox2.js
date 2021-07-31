@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, Image, Text } from 'react-native';
-import Colors from '../common/colors';
+// import Colors from '../common/colors';
 
-const CheckBox2 = ({ termList, setTermList, active, children, id }) => {
+const CheckBox2 = ({ setTermList, active, children, id }) => {
 	return (
-		<View style={{ flexDirection: 'row' }}>
+		<View style={{ flexDirection: 'row', marginLeft: 10 }}>
 			<TouchableOpacity
 				style={{ marginLeft: 40 }}
 				onPress={() => {

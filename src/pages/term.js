@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Colors from '../common/colors';
 import Title from '../components/title';
@@ -8,15 +8,6 @@ import Footer from '../components/footer';
 import { useNavigation } from '@react-navigation/native';
 
 const Term = () => {
-	// const [ btn, setBtn ] = useState(false);
-
-	// const clickCheck = () => {
-	// 	setCheck((prev) => !prev);
-	// };
-	// const clickBtn = () => {
-	// 	setBtn((prev) => !prev);
-	// };
-
 	const [ termList, setTermList ] = useState([
 		{
 			id: 1,
@@ -55,39 +46,23 @@ const Term = () => {
 	const moveRegister = () => {
 		if (!essentialCheck()) return;
 		navigation.navigate('register', termList);
-
 		// essentialCheck() ? navigation.navigate('register') : {};
 	};
 
 	return (
-		<ScrollView contentcontainerstyle={{ flex: 1 }}>
-			<Title style={styles.title}>
-				<Text>약관동의</Text>
-			</Title>
+		<ScrollView style={{ flex: 1 }}>
+			<View>
+				<Title style={styles.title} title="약관동의" subtitle="리그에 참여하기 위한 서비스 약관을 확인하세요" />
 
-			<View style={{ marginHorizontal: 28 }}>
-				<View style={{ flex: 2 }}>
-					<CheckBox
-						value={false}
-						// clickCheck={clickCheck}
-						termList={termList}
-						setTermList={setTermList}
-						style={styles.termStyle}
-					>
+				<View style={{ marginHorizontal: 28, marginBottom: 190 }}>
+					<CheckBox setTermList={setTermList} style={styles.termStyle}>
 						<Text>약관에 모두 동의합니다. </Text>
 					</CheckBox>
 
 					{termList.map((data) => {
 						return (
 							<View key={data.id}>
-								<CheckBox2
-									style={{ marginLeft: 10 }}
-									termList={termList}
-									setTermList={setTermList}
-									active={data.active}
-									id={data.id}
-									key={data.id}
-								>
+								<CheckBox2 setTermList={setTermList} active={data.active} id={data.id} key={data.id}>
 									<View style={{ flexDirection: 'row', marginVertical: 13 }} key={data.id}>
 										<Text style={{ fontSize: 12, color: Colors.brownishGrey }} key={data.id}>
 											{data.title}
@@ -98,19 +73,17 @@ const Term = () => {
 						);
 					})}
 				</View>
-			</View>
 
-			{/* clickBtn={clickBtn} */}
-			<Footer onPress={moveRegister} isCheck={essentialCheck()}>
-				<Text style={{ color: Colors.white }}>다음으로</Text>
-			</Footer>
+				<Footer onPress={moveRegister} isCheck={essentialCheck()}>
+					<Text style={{ color: Colors.white }}>다음으로</Text>
+				</Footer>
+			</View>
 		</ScrollView>
 	);
 };
 
 const styles = StyleSheet.create({
 	title: {
-		flex: 1,
 		fontSize: 30,
 		letterSpacing: -1.5,
 		color: Colors.black,

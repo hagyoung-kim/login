@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import Colors from '../common/colors';
 import Title from '../components/title';
 import Footer from '../components/footer';
@@ -165,9 +165,7 @@ const Register = ({ route }) => {
 
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
-			<Title style={styles.title}>
-				<Text>회원가입</Text>
-			</Title>
+			<Title style={styles.title} title="회원가입" subtitle="정보를 등록하고 리그에 참여하세요" />
 
 			<View style={{ marginHorizontal: 28 }}>
 				{joinInputList.map((inputData, index) => {
@@ -237,7 +235,8 @@ const styles = StyleSheet.create({
 	},
 	joinInputBorderPwCheck: {
 		borderBottomLeftRadius: 10,
-		borderBottomRightRadius: 10
+		borderBottomRightRadius: 10,
+		marginBottom: 80
 	}
 });
 
