@@ -12,8 +12,7 @@ const Inputbox = ({
 	propertyKey,
 	isValidated,
 	errorMessage,
-	inputTitle,
-	inputData
+	inputTitle
 }) => {
 	const [ isFocused, setIsFocused ] = useState(false);
 
@@ -39,7 +38,7 @@ const Inputbox = ({
 		</Text>
 	);
 
-	console.log(title, form[propertyKey]);
+	// console.log(title, form[propertyKey]);
 
 	return (
 		<View style={{ borderTopLeftRadius: 10 }}>
@@ -60,7 +59,8 @@ const Inputbox = ({
 						paddingTop: 10
 					}}
 				>
-					{title}
+					{inputTitle}
+					{/* or { title} */}
 				</Text>
 				<TextInput
 					style={{
@@ -72,7 +72,6 @@ const Inputbox = ({
 					placeholder={placeholder}
 					onFocus={() => {
 						setIsFocused(true);
-						// inputText();
 					}}
 					onBlur={() => {
 						setIsFocused(false);
@@ -86,7 +85,6 @@ const Inputbox = ({
 							return next;
 						});
 					}}
-					// value={form[propertyKey]}
 				/>
 				{(inputTitle === '비밀번호' || inputTitle === '비밀번호 확인') &&
 				form[propertyKey] !== '' &&
@@ -97,11 +95,12 @@ const Inputbox = ({
 						source={isValidated ? require('../img/greenCheck.png') : require('../img/pinkCheck.png')}
 					/>
 				)}
-				{typeof isValidated === 'boolean' &&
+				{/* {typeof isValidated === 'boolean' &&
 					!isValidated &&
 					inputTitle === '비밀번호 확인' &&
 					form[propertyKey] !== '' &&
-					_renderErrorMessage()}
+					_renderErrorMessage()} */}
+				{!isValidated && inputTitle === '비밀번호 확인' && form[propertyKey] !== '' && _renderErrorMessage()}
 			</View>
 
 			{children}

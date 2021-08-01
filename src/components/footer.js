@@ -9,7 +9,8 @@ const Footer = ({ onPress, children, isCheck }) => {
 		<View style={{ flex: 1 }}>
 			<TouchableOpacity
 				onPress={() => {
-					onPress && onPress();
+					// onPress && onPress();
+					onPress();
 				}}
 				style={{
 					// flex: 1,

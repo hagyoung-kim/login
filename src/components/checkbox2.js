@@ -4,7 +4,7 @@ import { View, TouchableOpacity, Image, Text } from 'react-native';
 
 const CheckBox2 = ({ setTermList, active, children, id }) => {
 	return (
-		<View style={{ flexDirection: 'row', marginLeft: 10 }}>
+		<View style={{ flexDirection: 'row', marginLeft: 10, flexDirection: 'row', marginVertical: 13 }}>
 			<TouchableOpacity
 				style={{ marginLeft: 40 }}
 				onPress={() => {
@@ -15,9 +15,15 @@ const CheckBox2 = ({ setTermList, active, children, id }) => {
 					});
 				}}
 			>
+				{/* state에 들어있는 기존의 data.id값이 id라는 이름으로 props되었고, 
+				내가 클릭했을 때 setTermList를 통해 값을 변경할 수 있는데 여기서 내가 
+				클릭할 때마다 data라는 인자를 통해 객체가 하나씩 반복됨. 변경되는 값이 
+				객체로 반복되어 들어오면서 변경된 data 값의 id가 기존의 data의 id와 일치하면 
+				기존의 active를 ture로 바꿔라 */}
+
 				<View>
 					<Image
-						style={{ position: 'absolute', top: 18, left: -25, flexDirection: 'row' }}
+						style={{ position: 'absolute', top: 5, left: -35, flexDirection: 'row' }}
 						source={active ? require('../img/pinkCheck.png') : require('../img/grayCheck.png')}
 					/>
 				</View>

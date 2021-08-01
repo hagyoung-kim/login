@@ -190,7 +190,6 @@ const Register = ({ route }) => {
 							inputTitle={inputData.title}
 							style={style}
 							{...inputData}
-							// inputData={inputData}
 							key={`Inputbox_${inputData.propertyKey}`}
 						/>
 					);

@@ -51,33 +51,31 @@ const Term = () => {
 
 	return (
 		<ScrollView style={{ flex: 1 }}>
-			<View>
-				<Title style={styles.title} title="약관동의" subtitle="리그에 참여하기 위한 서비스 약관을 확인하세요" />
+			{/* <View> */}
+			<Title style={styles.title} title="약관동의" subtitle="리그에 참여하기 위한 서비스 약관을 확인하세요" />
 
-				<View style={{ marginHorizontal: 28, marginBottom: 190 }}>
-					<CheckBox setTermList={setTermList} style={styles.termStyle}>
-						<Text>약관에 모두 동의합니다. </Text>
-					</CheckBox>
+			<View style={{ marginHorizontal: 28, marginBottom: 190 }}>
+				<CheckBox setTermList={setTermList} style={styles.termStyle}>
+					<Text>약관에 모두 동의합니다. </Text>
+				</CheckBox>
 
-					{termList.map((data) => {
-						return (
-							<View key={data.id}>
-								<CheckBox2 setTermList={setTermList} active={data.active} id={data.id} key={data.id}>
-									<View style={{ flexDirection: 'row', marginVertical: 13 }} key={data.id}>
-										<Text style={{ fontSize: 12, color: Colors.brownishGrey }} key={data.id}>
-											{data.title}
-										</Text>
-									</View>
-								</CheckBox2>
-							</View>
-						);
-					})}
-				</View>
-
-				<Footer onPress={moveRegister} isCheck={essentialCheck()}>
-					<Text style={{ color: Colors.white }}>다음으로</Text>
-				</Footer>
+				{termList.map((data) => {
+					return (
+						<View key={data.id}>
+							<CheckBox2 setTermList={setTermList} active={data.active} id={data.id} key={data.id}>
+								<Text style={{ fontSize: 12, color: Colors.brownishGrey }} key={data.id}>
+									{data.title}
+								</Text>
+							</CheckBox2>
+						</View>
+					);
+				})}
 			</View>
+
+			<Footer onPress={moveRegister} isCheck={essentialCheck()}>
+				<Text style={{ color: Colors.white }}>다음으로</Text>
+			</Footer>
+			{/* </View> */}
 		</ScrollView>
 	);
 };
@@ -99,13 +97,8 @@ const styles = StyleSheet.create({
 		borderColor: Colors.veryLightPink,
 		borderRadius: 10,
 		paddingVertical: 19,
-		paddingLeft: 9.5
-	},
-	termListStyle: {
-		position: 'relative',
-		marginTop: 22,
-		flexDirection: 'row',
-		paddingLeft: 9.5
+		paddingLeft: 9.5,
+		marginBottom: 20
 	}
 });
 
