@@ -6,6 +6,7 @@ import Footer from '../components/footer';
 import Inputbox from '../components/inputbox';
 import { useNavigation } from '@react-navigation/native';
 import Account from '../apis/Account';
+import LeaveBtn from '../components/leaveBtn';
 
 const Register = ({ route }) => {
 	const [ form, setForm ] = useState({
@@ -163,8 +164,14 @@ const Register = ({ route }) => {
 		goRegister();
 	};
 
+	const goBack = () => {
+		// navigation.goBack();
+		navigation.canGoBack() && navigation.goBack();
+	};
+
 	return (
 		<ScrollView contentcontainerstyle={{ flex: 1 }}>
+			<LeaveBtn onPress={goBack} />
 			<Title style={styles.title} title="회원가입" subtitle="정보를 등록하고 리그에 참여하세요" />
 
 			<View style={{ marginHorizontal: 28 }}>
@@ -208,8 +215,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		fontSize: 30,
 		letterSpacing: -1.5,
+		lineHeight: 60,
 		color: Colors.black,
-		marginTop: 56,
+		marginTop: 70,
 		marginBottom: 15,
 		borderBottomWidth: 1,
 		borderBottomColor: Colors.warmPink,
@@ -226,7 +234,7 @@ const styles = StyleSheet.create({
 	joinInputBorderPhone: {
 		borderBottomLeftRadius: 10,
 		borderBottomRightRadius: 10,
-		marginBottom: 50
+		marginBottom: 20
 	},
 	joinInputBorderPW: {
 		borderTopLeftRadius: 10,

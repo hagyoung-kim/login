@@ -13,7 +13,7 @@ const CheckBox = ({ children, style, setTermList }) => {
 
 	return (
 		<TouchableOpacity
-			style={[ { position: 'relative', marginTop: 22, flexDirection: 'row' }, style ]}
+			style={[ { position: 'relative', marginTop: 15, flexDirection: 'row' }, style ]}
 			onPress={() => {
 				if (allCheck) {
 					// 눌렀을 때 termList의 모든 요소의 active를 false로

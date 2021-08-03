@@ -6,7 +6,7 @@ const Footer = ({ onPress, children, isCheck }) => {
 	console.log('isCheck', isCheck);
 
 	return (
-		<View style={{ flex: 1 }}>
+		<View>
 			<TouchableOpacity
 				onPress={() => {
 					// onPress && onPress();

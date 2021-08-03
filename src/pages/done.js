@@ -21,7 +21,7 @@ const Done = () => {
 
 	return (
 		<ScrollView>
-			<View style={{ alignItems: 'center', marginTop: 247 }}>
+			<View style={{ alignItems: 'center', marginTop: 230 }}>
 				<View
 					style={{
 						width: 165,
@@ -36,20 +36,22 @@ const Done = () => {
 					/>
 				</View>
 				<Text style={{ fontSize: 21, color: Colors.darkGrey, marginTop: 30 }}>회원가입이 완료되었습니다.</Text>
-				<Text style={{ fontSize: 14, color: Colors.warmGrey, marginTop: 14.5 }}>로그인하고 바로 리그에 참여해 보세요.</Text>
+				<Text style={{ fontSize: 14, color: Colors.warmGrey, marginTop: 14.5, marginBottom: 150 }}>
+					로그인하고 바로 리그에 참여해 보세요.
+				</Text>
 			</View>
 
 			<TouchableOpacity
 				style={{
 					backgroundColor: Colors.warmPink,
-					height: 80,
+					// height: 80,
 					alignItems: 'center',
-					paddingTop: 22,
-					marginTop: 155
+					paddingTop: 30,
+					paddingBottom: 45
 				}}
 				onPress={moveLogin}
 			>
-				<Text style={{ color: Colors.white, fontSize: 20 }}> 로그인</Text>
+				<Text style={{ color: Colors.white, fontSize: 18 }}> 로그인</Text>
 			</TouchableOpacity>
 		</ScrollView>
 	);

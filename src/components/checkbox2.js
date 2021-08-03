@@ -4,7 +4,14 @@ import { View, TouchableOpacity, Image, Text } from 'react-native';
 
 const CheckBox2 = ({ setTermList, active, children, id }) => {
 	return (
-		<View style={{ flexDirection: 'row', marginLeft: 10, flexDirection: 'row', marginVertical: 13 }}>
+		<View
+			style={{
+				marginLeft: 10,
+				flexDirection: 'row',
+				marginVertical: 10,
+				justifyContent: 'space-between'
+			}}
+		>
 			<TouchableOpacity
 				style={{ marginLeft: 40 }}
 				onPress={() => {
@@ -30,7 +37,7 @@ const CheckBox2 = ({ setTermList, active, children, id }) => {
 				{children}
 			</TouchableOpacity>
 
-			<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+			<TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', marginRight: 10 }}>
 				<Text
 					style={{
 						fontSize: 11,
