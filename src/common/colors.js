@@ -12,7 +12,8 @@ const Colors = {
 	greyish: '#aaaaaa',
 	brownGrey: '#999999',
 	grapefruit: '#fc5a5a',
-	warmGreyTwo: '#7f7f7f'
+	warmGreyTwo: '#7f7f7f',
+	background: '#f9f9f9'
 };
 
 export default Colors;

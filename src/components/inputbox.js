@@ -17,7 +17,7 @@ const Inputbox = ({
 	const [ isFocused, setIsFocused ] = useState(false);
 
 	// console.log(
-	// 	'isValidated' + title,
+	// 	'isValidated' + title,s
 	// 	isValidated,
 	// 	typeof isValidated === 'boolean' &&
 	// 		!isValidated &&
@@ -79,8 +79,9 @@ const Inputbox = ({
 					onChangeText={(text) => {
 						setForm((prev) => {
 							const next = {
-								...prev,
+								...prev, //기존의 상태를 복사한 후
 								[propertyKey]: text
+								//propertyKey키를 가진 값을 text로 설정
 							};
 							return next;
 						});
