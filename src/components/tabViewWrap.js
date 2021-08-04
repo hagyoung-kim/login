@@ -1,14 +1,16 @@
-import * as React from 'react';
-import { View, useWindowDimensions, Text, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Colors from '../common/colors';
-import TabViewData from '../components/tabViewData';
+import TabjoinLeague from './tabjoinLeague';
+import TabPossessionItem from './tabPossessionItem';
+import TabInterestItem from './tabInterestItem';
 
-const FirstRoute = () => <TabViewData />;
+const FirstRoute = () => <TabjoinLeague />;
 
-const SecondRoute = () => <View style={{ backgroundColor: '#673ab7' }} />;
+const SecondRoute = () => <TabPossessionItem />;
 
-const ThirdRoute = () => <Text>Tab Three</Text>;
+const ThirdRoute = () => <TabInterestItem />;
 
 const renderScene = SceneMap({
 	first: FirstRoute,
@@ -25,8 +27,8 @@ const renderTabBar = (props) => (
 	/>
 );
 
-const TabViewEx = () => {
-	const layout = useWindowDimensions();
+const TabViewWrap = () => {
+	// const layout = useWindowDimensions();
 	const [ index, setIndex ] = React.useState(0);
 	const [ routes ] = React.useState([
 		{ key: 'first', title: '참여리그' },
@@ -35,22 +37,16 @@ const TabViewEx = () => {
 	]);
 
 	return (
-		<View>
+		<View style={{ height: 450 }}>
 			<TabView
-				style={{ height: 500, backgroundColor: 'red' }}
 				navigationState={{ index, routes }}
 				onIndexChange={setIndex}
 				renderScene={renderScene}
-				initialLayout={{ width: layout.width, height: layout.height }}
+				// initialLayout={{ width: layout.width, height: layout.height }}
 				renderTabBar={renderTabBar}
 			/>
 		</View>
 	);
 };
 
-// const styles = StyleSheet.create({
-// 	container: {
-// 		flex: 1
-// 	}
-// });
-export default TabViewEx;
+export default TabViewWrap;

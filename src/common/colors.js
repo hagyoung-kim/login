@@ -13,7 +13,11 @@ const Colors = {
 	brownGrey: '#999999',
 	grapefruit: '#fc5a5a',
 	warmGreyTwo: '#7f7f7f',
-	background: '#f9f9f9'
+	background: '#f9f9f9',
+	reddish: '#d73636',
+	pastelRed: '#ffe6e6',
+	darkSkyBlue: '#3e81ed',
+	skyBlue: '#dcebff'
 };
 
 export default Colors;

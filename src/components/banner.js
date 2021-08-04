@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScrollView, Image, Text, View, useWindowDimensions } from 'react-native';
+import { Image, View } from 'react-native';
 
 const Banner = () => {
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			<Image style={{ width: '100%' }} source={require('../img/visualImg.png')} />
 		</View>
 	);

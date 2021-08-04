@@ -1,8 +1,8 @@
 import React, { Children } from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import Colors from '../common/colors';
 
-const TabViewDataList = ({ title, titleData, unit, Children }) => {
+const TabjoinLeagueList = ({ title, titleData, unit, Children }) => {
 	return (
 		<View
 			style={{
@@ -33,4 +33,4 @@ const TabViewDataList = ({ title, titleData, unit, Children }) => {
 	);
 };
 
-export default TabViewDataList;
+export default TabjoinLeagueList;

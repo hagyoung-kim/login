@@ -4,7 +4,14 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 const TabViewBtn = ({ title }) => {
 	return (
-		<TouchableOpacity style={{ backgroundColor: Colors.background, position: 'relative' }}>
+		<TouchableOpacity
+			style={{
+				backgroundColor: Colors.white,
+				position: 'relative',
+				borderWidth: 1,
+				borderColor: Colors.background
+			}}
+		>
 			<Text style={{ fontSize: 14, textAlign: 'center', paddingVertical: 18 }}>{title}</Text>
 			<View
 				style={{
