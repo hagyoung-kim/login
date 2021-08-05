@@ -7,7 +7,7 @@ const TabjoinLeagueList = ({ title, titleData, unit, Children }) => {
 		<View
 			style={{
 				marginHorizontal: 25,
-				marginVertical: 17,
+				marginVertical: 17.5,
 				flexDirection: 'row',
 				borderColor: Colors.veryLightPink,
 				justifyContent: 'space-between'

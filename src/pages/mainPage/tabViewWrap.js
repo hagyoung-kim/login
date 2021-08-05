@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import Colors from '../common/colors';
-import TabjoinLeague from './tabjoinLeague';
-import TabPossessionItem from './tabPossessionItem';
-import TabInterestItem from './tabInterestItem';
+import Colors from '../../common/colors';
+import TabjoinLeague from '../../components/tabjoinLeague';
+import TabPossessionItem from '../../components/tabPossessionItem';
+import TabInterestItem from '../../components/tabInterestItem';
 
 const FirstRoute = () => <TabjoinLeague />;
 

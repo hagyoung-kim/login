@@ -4,7 +4,7 @@ import Colors from '../common/colors';
 
 const TabItemCard = ({ title, subtitle }) => {
 	return (
-		<View>
+		<View style={{ marginBottom: 20 }}>
 			<View style={styles.secondData}>
 				<Text style={styles.title}>{title}</Text>
 				<Text style={styles.subtitle}>{subtitle}</Text>
@@ -12,11 +12,11 @@ const TabItemCard = ({ title, subtitle }) => {
 			</View>
 			<View style={styles.secondBox}>
 				<View style={{ marginRight: 20 }}>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
 						<Text style={styles.datatitle}>현재가</Text>
 						<Text style={styles.dataSubtitle}>1.090.000</Text>
 					</View>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
 						<Text style={styles.datatitle}>매수가</Text>
 						<Text style={styles.dataSubtitle}>80,000</Text>
 					</View>
@@ -26,11 +26,11 @@ const TabItemCard = ({ title, subtitle }) => {
 					</View>
 				</View>
 				<View>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
 						<Text style={styles.datatitle}>투자금</Text>
 						<Text style={styles.dataSubtitle}>100,090,000</Text>
 					</View>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+					<View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 }}>
 						<Text style={styles.datatitle}>수익률</Text>
 						<Text style={(styles.dataSubtitle, { color: Colors.warmPink })}>24.6 %</Text>
 					</View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		lineHeight: 30,
 		paddingHorizontal: 16,
-		paddingVertical: 14
+		paddingVertical: 21
 	},
 	title: {
 		fontSize: 14,

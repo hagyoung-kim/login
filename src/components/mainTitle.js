@@ -26,7 +26,7 @@ const MainTitle = () => {
 					<Text style={{ fontSize: 17 }}>모의투자랭커</Text>
 				</View>
 				<TouchableOpacity style={{ marginRight: 20 }}>
-					<Text>전체보기</Text>
+					<Text style={{ fontSize: 12 }}>전체보기</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

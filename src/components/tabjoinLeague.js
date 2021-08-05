@@ -40,7 +40,12 @@ const TabjoinLeague = () => {
 			{joinLeagueData.map((data) => {
 				return (
 					<View style={{ backgroundColor: Colors.white }}>
-						<TabjoinLeagueList title={data.title} titleData={data.titleData} unit={data.unit} />
+						<TabjoinLeagueList
+							title={data.title}
+							titleData={data.titleData}
+							unit={data.unit}
+							key={`${data.id}`}
+						/>
 					</View>
 				);
 			})}

@@ -1,24 +1,35 @@
 import React from 'react';
-import { TouchableOpacity, View, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { useState } from 'react/cjs/react.production.min';
 import Colors from '../common/colors';
 
-const RankerList = () => {
+// const [rankerUpDown, setRankerUpDown] = useState('');
+
+const RankerList = ({ ranking, updownNum, image, name, percent }) => {
 	return (
 		<View style={{ backgroundColor: Colors.white }}>
-			<View style={{ marginLeft: 25, marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
-				<View style={{ alignItems: 'center' }}>
-					<Text style={{ fontSize: 16, fontWeight: 'bold' }}>1</Text>
-					<View style={{ flexDirection: 'row', alignItems: 'center' }}>
-						<Image source={require('../img/triUp.png')} />
-						<Text>5</Text>
+			<View
+				style={{
+					marginLeft: 25,
+					marginRight: 20,
+					flexDirection: 'row',
+					alignItems: 'center',
+					justifyContent: 'space-between'
+				}}
+			>
+				<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+					<View style={{ alignItems: 'center' }}>
+						<Text style={{ fontSize: 16, fontWeight: 'bold' }}>{ranking}</Text>
+						<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+							<Image source={require('../img/triUp.png')} />
+							<Text style={{ fontSize: 12 }}>{updownNum}</Text>
+						</View>
 					</View>
+
+					<Image style={{ width: 45, height: 45, marginVertical: 15, marginHorizontal: 15 }} source={image} />
+					<Text>{name}</Text>
 				</View>
 
-				<Image
-					style={{ width: 45, height: 45, marginVertical: 15 }}
-					source={require('../img/ellipse861.png')}
-				/>
-				<Text>주식왕김개미</Text>
 				<View
 					style={{
 						backgroundColor: Colors.veryLightPinkThree,
@@ -27,7 +38,7 @@ const RankerList = () => {
 						borderRadius: 20
 					}}
 				>
-					<Text>+ 300.15%</Text>
+					<Text style={{ color: Colors.warmPink }}>{percent}</Text>
 				</View>
 			</View>
 		</View>

@@ -1,9 +1,7 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../pages/home';
+import Home from '../pages/mainPage/home';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { ScrollView, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
