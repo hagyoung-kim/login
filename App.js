@@ -20,8 +20,8 @@ const App = () => {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator screenOptions={{ headerShown: false }}>
-				<Stack.Screen name="bottomNav" component={BottomNav} />
 				<Stack.Screen name="login" component={Login} />
+				<Stack.Screen name="bottomNav" component={BottomNav} />
 				<Stack.Screen name="term" component={Term} />
 				<Stack.Screen name="register" component={Register} />
 				<Stack.Screen name="registerDone" component={Done} />

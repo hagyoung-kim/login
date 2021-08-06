@@ -3,12 +3,6 @@ import { StyleSheet, View, Dimensions, Linking, TouchableOpacity, Image } from '
 import BannerApi from '../apis/bannerApi';
 import FastImage from 'react-native-fast-image';
 import Swiper from 'react-native-swiper';
-// import Modal from 'react-native-modal';
-
-// const [isModalVisible, setModalVisible] = useState(false);
-// const toggleModal = () => {
-// 	setModalVisible(!isModalVisible);
-//   };
 
 const Banner = () => {
 	const [ images, setImages ] = React.useState([]);

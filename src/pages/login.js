@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import axios from 'axios';
 import CheckBox from '../components/checkbox';
 import MainBtn from '../components/mainBtn';
 import LoginInput from '../components/loginInput';
 import { useNavigation } from '@react-navigation/native';
 import Account from '../apis/Account';
+import { setToken } from '../apis/token';
 
 const Login = () => {
 	const goLogin = async () => {
@@ -17,7 +17,8 @@ const Login = () => {
 			params.append('grant_type', 'password');
 			// console.log(params);
 			const result = Account.login(params).then((response) => {
-				// console.log(response);
+				console.log(response);
+				setToken(response.data.access_token);
 				moveMain();
 			});
 			// console.log(result);
@@ -46,7 +47,7 @@ const Login = () => {
 	};
 
 	const moveMain = useCallback(() => {
-		navigation.navigate('home');
+		navigation.navigate('bottomNav');
 	}, []);
 
 	return (

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import TabjoinLeagueList from './tabjoinLeagueList';
 import TabViewBtn from './tabViewBtn';
 import TabDropDown from './tabDropDown';
 import Colors from '../common/colors';
+import JoinLeagueApi from '../apis/JoinLeagueApi';
 
 const joinLeagueData = [
 	{
@@ -33,9 +34,41 @@ const joinLeagueData = [
 ];
 
 const TabjoinLeague = () => {
+	const [ dropDownJoinLeagueData, setDropDownJoinLeagueData ] = useState([]);
+	const [ dropDownJoinLeagueInfo, setDropDownJoinLeagueInfo ] = useState([]);
+
+	React.useEffect(() => {
+		JoinLeagueApi.JoinLeagueList().then((response) => {
+			setDropDownJoinLeagueData(response.data);
+			// console.log(response.data);
+		});
+		// .catch((error) => {
+		// 	console.log(error.response, '');
+		// });
+	}, []);
+
+	const getJoinLeagueInfo = (joinLeagueId) => {
+		// const { response } = props;
+		JoinLeagueApi.JoinLeagueInfo(joinLeagueId)
+			.then((response) => {
+				setDropDownJoinLeagueInfo(response);
+				console.log('joinInfo res ', response);
+			})
+			.catch((error) => {
+				console.log('joinInfo error', error.response);
+			});
+	};
+
+	const test = dropDownJoinLeagueData.map((d) => {
+		return {
+			label: d.title,
+			value: d,
+			key: d.id
+		};
+	});
 	return (
 		<View>
-			<TabDropDown title="2021년 10주차 리그" />
+			<TabDropDown dropDownJoinLeagueData={test} getJoinLeagueInfo={getJoinLeagueInfo} />
 
 			{joinLeagueData.map((data) => {
 				return (

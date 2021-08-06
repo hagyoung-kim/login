@@ -1,8 +1,9 @@
-import React, { Children } from 'react';
+import React, { Children, useState } from 'react';
 import { View, Text } from 'react-native';
+import JoinLeagueApi from '../apis/JoinLeagueApi';
 import Colors from '../common/colors';
 
-const TabjoinLeagueList = ({ title, titleData, unit, Children }) => {
+const TabjoinLeagueList = ({ title, titleData, unit, Children, joinLeagueId }) => {
 	return (
 		<View
 			style={{
@@ -27,6 +28,7 @@ const TabjoinLeagueList = ({ title, titleData, unit, Children }) => {
 			</View>
 			<View style={{ flexDirection: 'row', alignItems: 'center' }}>
 				<Text style={{ fontSize: 19, color: Colors.warmPink }}>{titleData}</Text>
+				{/* <Text style={{ fontSize: 19, color: Colors.warmPink }}>{titleData}</Text> */}
 				<Text style={{ fontSize: 12, marginLeft: 10 }}>{unit}</Text>
 			</View>
 		</View>

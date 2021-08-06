@@ -1,56 +1,67 @@
 import React from 'react';
+import { Image } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../pages/mainPage/home';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
+	const bottomIcon = [
+		{
+			name: '홈',
+			component: Home,
+			inactiveICon: require('../img/tabHomeOff.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		},
+		{
+			name: '리그참여',
+			component: Home,
+			inactiveICon: require('../img/tabLeagueOffCopy.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		},
+		{
+			name: '리그나우',
+			component: Home,
+			inactiveICon: require('../img/nowOffCopy.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		},
+		{
+			name: '리그랭킹',
+			component: Home,
+			inactiveICon: require('../img/rankOffCopy.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		},
+		{
+			name: '투자정보',
+			component: Home,
+			inactiveICon: require('../img/tabInvestOffCopy3.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		},
+		{
+			name: '더보기',
+			component: Home,
+			inactiveICon: require('../img/tabMoreOffCopy2.png'),
+			activeIcon: require('../img/tabHomeOn.png')
+		}
+	];
+
 	return (
 		<Tab.Navigator initialRouteName="Home">
-			<Tab.Screen
-				name="Home"
-				component={Home}
-				options={{
-					tabBarLabel: '홈',
-					headerShown: false
-				}}
-			/>
-			<Tab.Screen
-				name="leagueJoin"
-				component={Home}
-				options={{
-					tabBarLabel: '리그참여'
-				}}
-			/>
-			<Tab.Screen
-				name="leagueNow"
-				component={Home}
-				options={{
-					tabBarLabel: '리그나우'
-				}}
-			/>
-			<Tab.Screen
-				name="ranking"
-				component={Home}
-				options={{
-					tabBarLabel: '리그랭킹'
-				}}
-			/>
-			<Tab.Screen
-				name="info"
-				component={Home}
-				options={{
-					tabBarLabel: '투자정보'
-				}}
-			/>
-			<Tab.Screen
-				name="more"
-				component={Home}
-				options={{
-					tabBarLabel: '더보기'
-				}}
-			/>
+			{bottomIcon.map((route) => {
+				return (
+					<Tab.Screen
+						name={route.name}
+						component={route.component}
+						options={{
+							headerShown: false,
+							tabBarIcon: ({ focused }) => {
+								return <Image source={focused ? route.activeIcon : route.inactiveICon} />;
+							}
+						}}
+					/>
+				);
+			})}
 		</Tab.Navigator>
 	);
 };
