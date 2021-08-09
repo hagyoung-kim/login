@@ -1,22 +1,47 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 import Colors from '../common/colors';
-import TabDropDown from './tabDropDown';
+import TabDropDownPossession from './tabDropDownPossession';
 import TabViewBtn from './tabViewBtn';
 import TabItemCard from './tabItemCard';
+import NoItem from '../components/noItem';
+import TabNoItemBtn from '../components/tabNoItemBtn';
 
 const TabPossessionItem = () => {
+	const [ dropDownPossessionItem, setDropDownPossessionItem ] = useState([]);
+
+	const getPossessionItem = () => {
+		JoinLeagueApi.JoinLeaguePossession()
+			.then((response) => {
+				setDropDownPossessionItem(response);
+				// console.log('PossessionItem', response);
+			})
+			.catch((error) => {
+				// console.log('PossessionItem', error.response);
+			});
+	};
+
+	const PossessionItem = dropDownPossessionItem.map((item) => {
+		return {
+			label: item.title,
+			value: item,
+			key: item.id
+		};
+	});
+
 	return (
 		<View style={{ backgroundColor: Colors.white }}>
-			<TabDropDown title="2021년 10주차 리그" />
+			<TabDropDownPossession dropDownPossessionItem={PossessionItem} getPossessionItem={getPossessionItem} />
 
-			<ScrollView horizontal>
+			{/* <ScrollView horizontal>
 				<TabItemCard title="삼성전자" subtitle="(21.01.19~보유중)" />
 				<TabItemCard title="삼성전자" subtitle="(21.01.19~보유중)" />
 				<TabItemCard title="삼성전자" subtitle="(21.01.19~보유중)" />
-			</ScrollView>
+			</ScrollView> */}
+			<NoItem />
 
-			<TabViewBtn title="보유종목 전체보기" />
+			<TabNoItemBtn />
+			{/* <TabViewBtn title="보유종목 전체보기" /> */}
 		</View>
 	);
 };

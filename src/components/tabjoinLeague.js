@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import TabjoinLeagueList from './tabjoinLeagueList';
 import TabViewBtn from './tabViewBtn';
-import TabDropDown from './tabDropDown';
+import TabDropDownJoin from './tabDropDownJoin';
 import Colors from '../common/colors';
 import JoinLeagueApi from '../apis/JoinLeagueApi';
 
@@ -37,10 +37,10 @@ const TabjoinLeague = () => {
 	const [ dropDownJoinLeagueData, setDropDownJoinLeagueData ] = useState([]);
 	const [ dropDownJoinLeagueInfo, setDropDownJoinLeagueInfo ] = useState([]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		JoinLeagueApi.JoinLeagueList().then((response) => {
 			setDropDownJoinLeagueData(response.data);
-			// console.log(response.data);
+			console.log('JoinLeagueList!!!!', response);
 		});
 		// .catch((error) => {
 		// 	console.log(error.response, '');
@@ -52,30 +52,32 @@ const TabjoinLeague = () => {
 		JoinLeagueApi.JoinLeagueInfo(joinLeagueId)
 			.then((response) => {
 				setDropDownJoinLeagueInfo(response);
-				console.log('joinInfo res ', response);
+				console.log('joinInfo res', response);
 			})
 			.catch((error) => {
 				console.log('joinInfo error', error.response);
 			});
 	};
+	console.log('id', dropDownJoinLeagueData);
 
-	const test = dropDownJoinLeagueData.map((d) => {
+	const JoinLeagueList = dropDownJoinLeagueData.map((data) => {
 		return {
-			label: d.title,
-			value: d,
-			key: d.id
+			label: data.title,
+			value: data,
+			key: data.id
 		};
 	});
+
 	return (
 		<View>
-			<TabDropDown dropDownJoinLeagueData={test} getJoinLeagueInfo={getJoinLeagueInfo} />
+			<TabDropDownJoin dropDownJoinLeagueData={JoinLeagueList} getJoinLeagueInfo={getJoinLeagueInfo} />
 
 			{joinLeagueData.map((data) => {
 				return (
 					<View style={{ backgroundColor: Colors.white }}>
 						<TabjoinLeagueList
 							title={data.title}
-							titleData={data.titleData}
+							titleData={JoinLeagueList.data !== [] ? '-' : data.titleData}
 							unit={data.unit}
 							key={`${data.id}`}
 						/>
@@ -86,14 +88,5 @@ const TabjoinLeague = () => {
 		</View>
 	);
 };
-
-{
-	/* <TouchableOpacity>
-					<Image
-						source={require('../img/ellipseQuestion.png')}
-						style={{ position: 'absolute', bottom: 22, left: 70 }}
-					/>
-				</TouchableOpacity> */
-}
 
 export default TabjoinLeague;

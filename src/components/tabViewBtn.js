@@ -1,6 +1,6 @@
 import React from 'react';
 import Colors from '../common/colors';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 const TabViewBtn = ({ title }) => {
 	return (
@@ -21,18 +21,17 @@ const TabViewBtn = ({ title }) => {
 					position: 'absolute',
 					right: 20,
 					top: 15,
-					borderRadius: 50
+					borderRadius: 50,
+					alignItems: 'center',
+					justifyContent: 'center'
 				}}
 			>
-				<View
+				<Image
 					style={{
-						width: 11,
-						height: 11,
-						backgroundColor: Colors.background,
-						position: 'absolute',
-						right: 7,
-						top: 7
+						width: 6,
+						height: 11
 					}}
+					source={require('../img/arrowRightWhite.png')}
 				/>
 			</View>
 		</TouchableOpacity>

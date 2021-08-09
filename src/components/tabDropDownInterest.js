@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { View, Image, Text, TouchableOpacity, placeholder } from 'react-native';
+import { View, Image, Text, placeholder } from 'react-native';
 import Colors from '../common/colors';
 import RNPickerSelect from 'react-native-picker-select';
 
-const TabDropDown = ({ title, dropDownJoinLeagueData, getJoinLeagueInfo }) => {
+const TabDropDownInterest = ({ title, dropDownInterestItem, getJoinLeagueInterest }) => {
 	const [ text, setText ] = useState(null);
 
 	const onChangeText = (value) => {
 		setText(value);
 	};
-	console.log('dropDownJoinLeagueData!', dropDownJoinLeagueData);
 
 	return (
 		<View style={{ backgroundColor: Colors.white, padding: 20 }}>
@@ -34,18 +33,19 @@ const TabDropDown = ({ title, dropDownJoinLeagueData, getJoinLeagueInfo }) => {
 				value={text}
 				fixAndroidTouchableBug={true}
 				placeholder={{
-					label: '2021년 10주차 리그'
+					label: '우량주그룹'
 				}}
 				onValueChange={(value) => {
+					// console.log('getJoinLeagueInfooooo', getJoinLeagueInfo);
 					if (!value) return;
-					console.log('onvalueChange', value);
+					// console.log('onvalueChange', value);
 					onChangeText(value);
-					getJoinLeagueInfo(value.id);
+					getJoinLeagueInterest(value.id);
 				}}
-				items={dropDownJoinLeagueData || []}
+				items={dropDownInterestItem || []}
 			/>
 		</View>
 	);
 };
 
-export default TabDropDown;
+export default TabDropDownInterest;

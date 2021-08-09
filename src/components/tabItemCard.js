@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
 		fontSize: 14,
 		color: Colors.darkGrey,
 		fontWeight: 'bold'
-		// justifyContent: 'flex-end'
 	}
 });
 
